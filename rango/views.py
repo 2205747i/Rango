@@ -1,7 +1,7 @@
 from rango.models import Category, Page
 from django.shortcuts import render
+from rango.forms import CategoryForm
 from django.http import HttpResponse
-from rango.forms import CategoryForms
 
 def index(request):
     # return HttpResponse("Rango says hello world!" "<html> <a href='/rango/about/'>About</a>.</html>")
