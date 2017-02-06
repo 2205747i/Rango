@@ -26,3 +26,28 @@ class Page(models.Model):
 
     def __str__(self):  # For Python 2, use __unicode__ too
         return self.title
+	
+	def clean(self):
+		cleaned_data = self.cleaned_data
+		url = cleaned_data.get('url')
+		# If url is not empty and doesn't start with 'http://',
+		# then prepend 'http://'.
+		if url and not url.startswith('http://'):
+			url = 'http://' + url
+			cleaned_data['url'] = url
+			return cleaned_data
+			
+class UserProfile(models.Model):
+	# This line is required. Links UserProfile to a User model instance.
+	user = models.OneToOneField(User)
+	# The additional attributes we wish to include.
+	website = models.URLField(blank=True)
+	picture = models.ImageField(upload_to='profile_images', blank=True)
+	# Override the __unicode__() method to return out something meaningful!
+	# Remember if you use Python 2.7.x, define __unicode__ too!
+	
+	def __str__(self):
+		return self.user.username
+	
+	
+	
