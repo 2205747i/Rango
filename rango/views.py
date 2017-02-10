@@ -160,7 +160,7 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-	return render(request, 'rango/restricted.html', {'text': "Since you're logged in, you can see this text!"})
+	return render(request, 'rango/restricted.html', {'text': "since you're logged in, you can see this text!"})
 	
 def user_logout(request):
 	# Since we know the user is logged in, we can now just log them out.
